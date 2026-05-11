@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Constellation of Me</title>
+  <meta name="description"
+    content="A cosmic exploration of identity, consciousness, and the many dimensions of who I am">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cosmic-deep: hsl(275, 60%, 8%);
+      --cosmic-nebula: hsl(310, 50%, 50%);
+      --cosmic-star: hsl(320, 30%, 95%);
+      --cosmic-glow: hsl(320, 60%, 75%);
+      --cosmic-dawn: hsl(330, 50%, 85%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--cosmic-deep);
+      color: hsl(220, 20%, 92%);
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: hsl(280, 40%, 10%);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: hsl(310, 40%, 40%);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: hsl(320, 50%, 50%);
+    }
+
+    /* Main container */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Parallax star background */
+    .star-background {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      transition: background 1s ease;
+    }
+
+    /* Nebula layers */
+    .nebula-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .nebula-main {
+      position: absolute;
+      width: 600px;
+      height: 1000px;
+      filter: blur(80px);
+      background: linear-gradient(180deg,
+          rgba(240, 171, 252, 0.3) 0%,
+          rgba(232, 121, 249, 0.25) 30%,
+          rgba(192, 132, 252, 0.2) 60%,
+          transparent 100%);
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%) rotate(-5deg);
+      border-radius: 50%;
+    }
+
+    .nebula-secondary {
+      position: absolute;
+      width: 500px;
+      height: 800px;
+      filter: blur(100px);
+      background: linear-gradient(180deg,
+          rgba(196, 181, 253, 0.25) 0%,
+          rgba(167, 139, 250, 0.2) 40%,
+          transparent 100%);
+      top: 5%;
+      left: 35%;
+      transform: rotate(10deg);
+      border-radius: 40% 60% 50% 50%;
+    }
+
+    .nebula-ambient {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      filter: blur(120px);
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+      top: 60%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Star layers */
+    .star-layer {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.1s ease-out, opacity 0.5s ease;
+    }
+
+    .star {
+      position: absolute;
+      animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+      animation-delay: var(--twinkle-delay, 0s);
+    }
+
+    .star svg {
+      filter: drop-shadow(0 0 var(--glow-size, 4px) rgba(255, 255, 255, 0.9)) drop-shadow(0 0 var(--glow-size-large, 8px) rgba(240, 171, 252, 0.6));
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.7;
+        transform: scale(0.9);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    /* Shooting stars */
+    .shooting-star {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #fff, 0 0 12px rgba(240, 171, 252, 0.8), 0 0 20px rgba(196, 181, 253, 0.5);
+      animation: shoot 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .shooting-star::after {
+      content: '';
+      position: absolute;
+      width: 96px;
+      height: 2px;
+      right: 100%;
+      top: 3px;
+      background: linear-gradient(to right, transparent, rgba(240, 171, 252, 0.6), rgba(255, 255, 255, 0.9));
+      transform: rotate(-34deg);
+      transform-origin: right center;
+    }
+
+    @keyframes shoot {
+      0% {
+        transform: translate(0, 0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(180px, 120px);
+        opacity: 0;
+      }
+    }
+
+    /* Distant planet */
+    .planet {
+      position: absolute;
+      left: 12%;
+      top: 20%;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* Light source */
+    .light-source {
+      position: absolute;
+      right: -5%;
+      top: 15%;
+      width: 35vw;
+      height: 35vw;
+      max-width: 500px;
+      max-height: 500px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .light-source-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+
+    /* Slide container */
+    .slides-container {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 10;
+    }
+
+    @media (min-width: 768px) {
+      .slides-container {
+        padding: 32px;
+      }
+    }
+
+    /* Individual slide */
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      transform: scale(0.9) rotateY(15deg);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      perspective: 1000px;
+    }
+
+    @media (min-width: 768px) {
+      .slide {
+        padding: 32px;
+      }
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1) rotateY(0);
+      pointer-events: auto;
+    }
+
+    .slide.prev {
+      transform: scale(1.1) rotateY(-15deg);
+    }
+
+    /* Card container */
+    .card-container {
+      position: relative;
+      width: 100%;
+      max-width: 72rem;
+      margin: 0 auto;
+      transform: translateY(50px);
+      transition: transform 0.6s ease 0.2s;
+    }
+
+    .slide.active .card-container {
+      transform: translateY(0);
+    }
+
+    .card-container.extra-wide {
+      max-width: 80rem;
+    }
+
+    /* Glass card */
+    .glass-card {
+      position: relative;
+      border-radius: 24px;
+      padding: 32px;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    @media (min-width: 768px) {
+      .glass-card {
+        padding: 48px;
+      }
+    }
+
+    .glass-card.dark-theme {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-card.light-theme {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Corner decorations */
+    .corner-top-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 96px;
+      height: 96px;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .corner-bottom-right {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 128px;
+      height: 128px;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    /* Page number */
+    .page-number {
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transition: opacity 0.4s ease 0.4s;
+    }
+
+    .slide.active .page-number {
+      opacity: 1;
+    }
+
+    /* Title slide styles */
+    .title-slide {
+      text-align: center;
+    }
+
+    .title-icon {
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .title-icon svg {
+      width: 60px;
+      height: 60px;
+    }
+
+    .title-icon circle {
+      stroke-dasharray: 157;
+      stroke-dashoffset: 157;
+      animation: drawCircle 1.5s ease forwards 0.5s;
+    }
+
+    .title-icon .center-dot {
+      transform: scale(0);
+      transform-origin: center;
+      animation: scaleIn 0.3s ease forwards 0.8s;
+    }
+
+    @keyframes drawCircle {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes scaleIn {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      text-wrap: balance;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.6s ease forwards 0.4s;
+    }
+
+    @media (min-width: 768px) {
+      .main-title {
+        font-size: 3.75rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .main-title {
+        font-size: 4.5rem;
+      }
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      opacity: 0;
+      max-width: 42rem;
+      margin: 0 auto;
+      text-wrap: pretty;
+      animation: fadeUp 0.6s ease forwards 0.6s;
+    }
+
+    @media (min-width: 768px) {
+      .subtitle {
+        font-size: 1.25rem;
+      }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 0.7;
+        transform: translateY(0);
+      }
+    }
+
+    /* Content slide styles */
+    .content-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .roman-numeral {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      opacity: 0.5;
+    }
+
+    .accent-line {
+      height: 1px;
+      flex: 1;
+      max-width: 64px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: expandLine 0.6s ease forwards 0.4s;
+    }
+
+    @keyframes expandLine {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .content-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-wrap: balance;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards 0.4s;
+    }
+
+    @media (min-width: 768px) {
+      .content-title {
+        font-size: 2.25rem;
+      }
+    }
+
+    .content-body {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUpFull 0.6s ease forwards 0.5s;
+    }
+
+    @keyframes fadeUpFull {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-body p {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .content-body p {
+        font-size: 1.125rem;
+      }
+    }
+
+    .content-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Two column layout */
+    .two-column {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      .two-column {
+        flex-direction: row;
+        gap: 32px;
+      }
+
+      .two-column>.text-column,
+      .two-column>.image-column {
+        width: 50%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 24px;
+      max-height: 50vh;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .toc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      transition: background 0.2s ease;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: slideIn 0.3s ease forwards;
+    }
+
+    .toc-item:nth-child(1) {
+      animation-delay: 0.05s;
+    }
+
+    .toc-item:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .toc-item:nth-child(3) {
+      animation-delay: 0.15s;
+    }
+
+    .toc-item:nth-child(4) {
+      animation-delay: 0.2s;
+    }
+
+    .toc-item:nth-child(5) {
+      animation-delay: 0.25s;
+    }
+
+    .toc-item:nth-child(6) {
+      animation-delay: 0.3s;
+    }
+
+    .toc-item:nth-child(7) {
+      animation-delay: 0.35s;
+    }
+
+    .toc-item:nth-child(8) {
+      animation-delay: 0.4s;
+    }
+
+    .toc-item:nth-child(9) {
+      animation-delay: 0.45s;
+    }
+
+    .toc-item:nth-child(10) {
+      animation-delay: 0.5s;
+    }
+
+    .toc-item:nth-child(11) {
+      animation-delay: 0.55s;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .toc-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .toc-number {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .toc-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toc-roman {
+      font-size: 12px;
+      opacity: 0.5;
+    }
+
+    .toc-title {
+      font-weight: 500;
+    }
+
+    .toc-page {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    /* Image gallery */
+    .image-gallery {
+      margin-top: 24px;
+    }
+
+    .gallery-image-container {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-image-container:hover {
+      transform: scale(1.02);
+    }
+
+    .gallery-image-container:hover .zoom-overlay {
+      opacity: 1;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      max-height: 50vh;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .gallery-image.multi {
+      max-height: 45vh;
+    }
+
+    .zoom-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .zoom-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* Gallery navigation */
+    .gallery-nav {
+      position: relative;
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px;
+      border-radius: 50%;
+      backdrop-filter: blur(12px);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      z-index: 5;
+    }
+
+    .gallery-arrow.left {
+      left: 8px;
+    }
+
+    .gallery-arrow.right {
+      right: 8px;
+    }
+
+    .gallery-arrow svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .gallery-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .gallery-dot.active {
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .gallery-counter {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 8px;
+      opacity: 0.5;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-close svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      z-index: 10;
+    }
+
+    .lightbox-arrow:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-arrow.left {
+      left: 16px;
+    }
+
+    .lightbox-arrow.right {
+      right: 16px;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+
+    /* Blockquote */
+    blockquote {
+      border-left: 2px solid rgba(167, 139, 250, 0.5);
+      padding-left: 16px;
+      margin: 24px 0;
+      font-style: italic;
+    }
+
+    /* Constellation minimap */
+    .constellation-map {
+      position: fixed;
+      bottom: 128px;
+      left: 24px;
+      z-index: 50;
+      width: 192px;
+      height: 160px;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeIn 0.5s ease forwards 0.5s;
+    }
+
+    @media (min-width: 768px) {
+      .constellation-map {
+        width: 256px;
+        height: 208px;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .map-background {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .map-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 12px;
+    }
+
+    .map-line {
+      transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease;
+    }
+
+    .map-star {
+      cursor: pointer;
+      transition: transform 0.2s ease, fill 0.3s ease;
+    }
+
+    .map-star:hover {
+      transform: scale(1.5);
+    }
+
+    .map-glow {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.2;
+        transform: scale(1.5);
+      }
+    }
+
+    .map-label {
+      position: absolute;
+      bottom: -32px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* Navigation buttons */
+    .nav-controls {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-button {
+      padding: 12px;
+      border-radius: 50%;
+      backdrop-filter: blur(12px);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease, transform 0.1s ease;
+    }
+
+    .nav-button:hover:not(:disabled) {
+      transform: scale(1.1);
+    }
+
+    .nav-button:active {
+      transform: scale(0.95);
+    }
+
+    .nav-button:disabled {
+      cursor: not-allowed;
+    }
+
+    .nav-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .nav-counter {
+      padding: 8px 16px;
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Keyboard hint */
+    .keyboard-hint {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards 2s;
+    }
+
+    /* Theme variations */
+    .dark-theme .toc-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-theme .toc-item.active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dark-theme .toc-number {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dark-theme .toc-page {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-theme .accent-line {
+      background: hsl(270, 70%, 70%);
+    }
+
+    .dark-theme .corner-top-left {
+      background: radial-gradient(circle at top left, rgba(192, 132, 252, 0.15) 0%, transparent 70%);
+    }
+
+    .dark-theme .corner-bottom-right {
+      background: radial-gradient(circle at bottom right, rgba(240, 171, 252, 0.1) 0%, transparent 70%);
+    }
+
+    .dark-theme .page-number {
+      color: hsla(220, 20%, 85%, 0.7);
+    }
+
+    .dark-theme .zoom-overlay {
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+    }
+
+    .dark-theme .gallery-arrow {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .dark-theme .gallery-arrow:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .dark-theme .gallery-dot {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .dark-theme .gallery-dot:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .dark-theme .gallery-dot.active {
+      background: white;
+    }
+
+    .dark-theme .nav-button {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .dark-theme .nav-button:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .dark-theme .nav-button:disabled {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .dark-theme .nav-counter {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .dark-theme .keyboard-hint {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .light-theme .toc-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .light-theme .toc-item.active {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .toc-number {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .toc-page {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .light-theme .accent-line {
+      background: hsl(35, 90%, 50%);
+    }
+
+    .light-theme .corner-top-left {
+      background: radial-gradient(circle at top left, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+    }
+
+    .light-theme .corner-bottom-right {
+      background: radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    }
+
+    .light-theme .page-number {
+      color: hsla(220, 25%, 25%, 0.8);
+    }
+
+    .light-theme .glass-card {
+      color: hsl(220, 30%, 15%);
+    }
+
+    .light-theme .zoom-overlay {
+      background: rgba(255, 255, 255, 0.3);
+      color: hsl(220, 30%, 20%);
+    }
+
+    .light-theme .gallery-arrow {
+      background: rgba(0, 0, 0, 0.1);
+      color: hsl(220, 30%, 20%);
+    }
+
+    .light-theme .gallery-arrow:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .light-theme .gallery-dot {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .light-theme .gallery-dot:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .light-theme .gallery-dot.active {
+      background: hsl(220, 30%, 20%);
+    }
+
+    .light-theme .nav-button {
+      background: rgba(0, 0, 0, 0.1);
+      color: hsl(220, 30%, 20%);
+    }
+
+    .light-theme .nav-button:hover:not(:disabled) {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .light-theme .nav-button:disabled {
+      background: rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    .light-theme .nav-counter {
+      background: rgba(0, 0, 0, 0.1);
+      color: hsl(220, 30%, 20%);
+    }
+
+    .light-theme .keyboard-hint {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="carousel-container">
+    <!-- Star Background -->
+    <div class="star-background" id="starBackground">
+      <div class="nebula-layer" id="nebulaLayer">
+        <div class="nebula-main"></div>
+        <div class="nebula-secondary"></div>
+        <div class="nebula-ambient"></div>
+      </div>
+      <div class="star-layer" id="starLayer1"></div>
+      <div class="star-layer" id="starLayer2"></div>
+      <div class="star-layer" id="starLayer3"></div>
+      <div class="planet" id="planet"></div>
+      <div class="light-source" id="lightSource">
+        <div class="light-source-inner"></div>
+      </div>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slides-container" id="slidesContainer"></div>
+
+    <!-- Constellation Minimap -->
+    <div class="constellation-map" id="constellationMap">
+      <div class="map-background"></div>
+      <svg class="map-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" id="mapSvg">
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(147, 197, 253, 0.3)" />
+            <stop offset="100%" stop-color="rgba(251, 191, 36, 0.3)" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+      <div class="map-label" id="mapLabel"></div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls dark-theme" id="navControls">
+      <button class="nav-button" id="prevBtn" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <div class="nav-counter" id="navCounter">1 / 11</div>
+      <button class="nav-button" id="nextBtn" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint dark-theme" id="keyboardHint">
+      Use arrow keys or click constellation stars to navigate
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <button class="lightbox-arrow left" id="lightboxPrev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <img class="lightbox-image" id="lightboxImage" src="" alt="">
+      <button class="lightbox-arrow right" id="lightboxNext">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+      <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+  </main>
+
+  <script>
+    // Slide data
+    const SLIDES = [
+      { id: 1, name: "Title", romanNumeral: "I", title: "The Constellation of Me" },
+      { id: 2, name: "Contents", romanNumeral: "II", title: "Table of Contents" },
+      { id: 3, name: "Introduction", romanNumeral: "III", title: "Brief Introduction" },
+      { id: 4, name: "SMART Goal", romanNumeral: "IV", title: "SMART Goal Reflection" },
+      { id: 5, name: "Eastern & Western", romanNumeral: "V", title: "Eastern and Western Self" },
+      { id: 6, name: "Philosophical", romanNumeral: "VI", title: "Philosophical and Psychological Self" },
+      { id: 7, name: "Anthropological", romanNumeral: "VII", title: "Anthropological and Sociological Self" },
+      { id: 8, name: "Physical", romanNumeral: "VIII", title: "Physical and Sexual Self" },
+      { id: 9, name: "Material", romanNumeral: "IX", title: "Material and Digital Self" },
+      { id: 10, name: "Spiritual", romanNumeral: "X", title: "Spiritual and Political Self" },
+      { id: 11, name: "Parting Words", romanNumeral: "XI", title: "Parting Words" }
+    ];
+
+    const SLIDE_IMAGES = {
+      smartGoal: [
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SMART%20goals-1-1GtcbGCAYcxqNICInheNJL6GNfd6ne.png", alt: "SMART Goals infographic" }
+      ],
+      easternWestern: [
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/premiuim%20canva-1-fwP9mmC7vjHGvxKb1ylWcYE30SqBlf.png", alt: "Get to Know Me - A Mix Blood" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/premiuim%20canva-2-kq62tlbpPwIVJqDQgmc9uLrJOwnEuB.png", alt: "Eastern and Western Influences in My Identity" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/premiuim%20canva-3-XiROWHv8Z1EBPb8a1y9bI2BuARDrep.png", alt: "Promoting Cultural Empathy" }
+      ],
+      philosophical: [
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SS1-3pYMGT1vUgmN9dDnqyEQsYqItZL7tE.png", alt: "Video presentation screenshot 1" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/SS2-5cHb5MPmdksQTaXHpwkR430yxSnVdW.png", alt: "Sailboat at sunset - reflection" }
+      ],
+      anthropological: [
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/socialself-VL1s9ggt3r6ag9zqswAsG4prztVFui.png", alt: "Anthropological and Sociological Perspectives of the Self" }
+      ],
+      physical: [
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD_M4%20Reflective%20Essay-1-HZTgUkQEE0eGouyYkDkgYs77I3o7G4.png", alt: "Physical and Sexual Self - Reflective Essay Part 1" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD_M4%20Reflective%20Essay-2-ushyp3ckyKjVGgYmibXDZbIqHxx01s.png", alt: "Physical and Sexual Self - Reflective Essay Part 2" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD_M4%20Reflective%20Essay-3-ZsHNEYvOsR556qWVnwhkrCncSx5WQl.png", alt: "Physical and Sexual Self - Reflective Essay Part 3" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD_M4%20Reflective%20Essay-4-0mDPS2JLn5XGZr7hPpiuIhe0ERHRQh.png", alt: "Physical and Sexual Self - Reflective Essay Part 4" }
+      ],
+      material: [
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD_MaterialDigitalSelf-1-7gzBW9nDvOfEwpQ363odnZpwMf7AIq.png", alt: "Material and Digital Self Reflection Part 1" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD_MaterialDigitalSelf-2-pBb7X1FD2rMs99KLPSWgfEy7ELDbTP.png", alt: "Material and Digital Self Reflection Part 2" }
+      ],
+      spiritual: [
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD%20-%20Reflection%20on%20Spiritual%20and%20Political%20Self-1-ufep4oLyS0sjJlsYLFHpw5oI733tWr.png", alt: "Reflection on Political Self" },
+        { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ARNOLD%20-%20Reflection%20on%20Spiritual%20and%20Political%20Self-2-JlHDQkA57YGnZ2Lzev7ZqVPPYmczie.png", alt: "Reflection on Spiritual Self" }
+      ]
+    };
+
+    const constellationPoints = [
+      { x: 15, y: 65 }, { x: 22, y: 50 }, { x: 18, y: 35 }, { x: 25, y: 22 },
+      { x: 38, y: 18 }, { x: 50, y: 28 }, { x: 55, y: 45 }, { x: 68, y: 55 },
+      { x: 78, y: 48 }, { x: 88, y: 38 }, { x: 92, y: 28 }
+    ];
+
+    // State
+    let currentIndex = 0;
+    let isTransitioning = false;
+    let mouseX = 0.5;
+    let mouseY = 0.5;
+    let lightboxImages = [];
+    let lightboxIndex = 0;
+    const galleryIndices = {};
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', init);
+
+    function init() {
+      generateStars();
+      generateSlides();
+      generateConstellationMap();
+      updateSlide(0);
+      setupEventListeners();
+      updatePlanet();
+      startShootingStars();
+    }
+
+    // Generate stars
+    function generateStars() {
+      const layers = [
+        { id: 'starLayer1', count: 150, sizeMin: 6, sizeMax: 14, parallax: 5 },
+        { id: 'starLayer2', count: 100, sizeMin: 10, sizeMax: 22, parallax: 15 },
+        { id: 'starLayer3', count: 60, sizeMin: 14, sizeMax: 32, parallax: 30 }
+      ];
+
+      layers.forEach(layer => {
+        const container = document.getElementById(layer.id);
+        for (let i = 0; i < layer.count; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          const size = Math.random() * (layer.sizeMax - layer.sizeMin) + layer.sizeMin;
+          star.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            width: ${size}px;
+            height: ${size}px;
+            --twinkle-duration: ${2 + Math.random() * 3}s;
+            --twinkle-delay: ${Math.random() * 5}s;
+            --glow-size: ${size * 0.5}px;
+            --glow-size-large: ${size}px;
+          `;
+          star.innerHTML = `
+            <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+              <path d="M12 0L13.5 10.5L24 12L13.5 13.5L12 24L10.5 13.5L0 12L10.5 10.5L12 0Z" fill="url(#starGrad)"/>
+              <defs>
+                <radialGradient id="starGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="40%" stop-color="#f5f3ff"/>
+                  <stop offset="70%" stop-color="#e9d5ff"/>
+                  <stop offset="100%" stop-color="#d8b4fe"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          `;
+          container.appendChild(star);
+        }
+        container.dataset.parallax = layer.parallax;
+      });
+    }
+
+    // Generate slides HTML
+    function generateSlides() {
+      const container = document.getElementById('slidesContainer');
+
+      SLIDES.forEach((slide, index) => {
+        const slideEl = document.createElement('div');
+        slideEl.className = 'slide';
+        slideEl.id = `slide-${index}`;
+
+        const isDark = index >= 7 || (index / (SLIDES.length - 1)) <= 0.6;
+        const themeClass = isDark ? 'dark-theme' : 'light-theme';
+        const isExtraWide = index === 10;
+
+        slideEl.innerHTML = `
+          <div class="card-container ${isExtraWide ? 'extra-wide' : ''}">
+            <div class="glass-card ${themeClass}">
+              <div class="corner-top-left"></div>
+              <div class="corner-bottom-right"></div>
+              <div class="page-number">${String(index + 1).padStart(2, '0')}</div>
+              <div class="slide-content ${themeClass}">
+                ${getSlideContent(index)}
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(slideEl);
+      });
+    }
+
+    function getSlideContent(index) {
+      const brightness = index / (SLIDES.length - 1);
+      const isDark = index >= 7 || brightness <= 0.6;
+      const accentColor = isDark ? 'hsl(270, 70%, 70%)' : 'hsl(35, 90%, 50%)';
+
+      switch (index) {
+        case 0:
+          return `
+            <div class="title-slide">
+              <div class="title-icon">
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                  <circle cx="30" cy="30" r="25" fill="none" stroke="${accentColor}" stroke-width="1"/>
+                  <circle class="center-dot" cx="30" cy="30" r="4" fill="${accentColor}"/>
+                </svg>
+              </div>
+              <h1 class="main-title">The Constellation of Me</h1>
+              <p class="subtitle">A cosmic exploration of identity, consciousness, and the many dimensions of who I am</p>
+            </div>
+          `;
+
+        case 1:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">II</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Table of Contents</h2>
+            <nav class="toc-nav content-body">
+              ${SLIDES.map((s, i) => `
+                <button class="toc-item ${i === currentIndex ? 'active' : ''}" onclick="goToSlide(${i})">
+                  <div class="toc-item-left">
+                    <span class="toc-number">${i + 1}</span>
+                    <div class="toc-info">
+                      <span class="toc-roman">${s.romanNumeral}</span>
+                      <span class="toc-title">${s.title}</span>
+                    </div>
+                  </div>
+                  <span class="toc-page">Page ${i + 1}</span>
+                </button>
+              `).join('')}
+            </nav>
+          `;
+
+        case 2:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">III</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Brief Introduction</h2>
+            <div class="content-body">
+              <p>Identity is rarely a single, solid object; rather, it is a collection of moments, lessons, and reflections scattered across time. I have titled my final requirement 'The Constellation of Me' to represent this complexity. Much like stars in the night sky, the individual essays, videos, and reflections in this gallery might seem distant or distinct on their own. However, when viewed together, they form a unique map outlining my true self. This portfolio traces the lines between my internal psyche and my external world, revealing the 'constellation' of the person I am becoming.</p>
+            </div>
+          `;
+
+        case 3:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">IV</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">SMART Goal Reflection</h2>
+            <div class="content-body two-column">
+              <div class="text-column">
+                <p>I am proud to say that I have achieved my goal for the midterm period and am hoping to achieve it again this final term! Through rigourously yet intuitively being guided by the SMART goal system, I was motivated to strive achieving my goal in realistic and measurable means. I learned that structured framework for accomplishment is incredibly useful especially to a perfectionist who constantly struggles in unrealistic idealistic measures. It's important to fully understand my capabilities and push myself through my limitations yet within that capability matrix to achieve my heart's desires.</p>
+              </div>
+              <div class="image-column">
+                ${generateImageGallery('smartGoal', index)}
+              </div>
+            </div>
+          `;
+
+        case 4:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">V</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Eastern and Western Self</h2>
+            <div class="content-body two-column">
+              <div class="text-column">
+                <p>I am a product of two worlds. With a Western father and an Eastern mother, I have grown up navigating two very different sets of values and communication styles. From my father, I inherited directness, independence, and a fast-paced drive toward my personal goals. From my mother, I learned the importance of family, respect, and keeping relationships at the center of my decisions.</p>
+                <p>These influences do not always sit comfortably side by side. There are moments where I feel the tension between wanting to speak my mind and knowing that the situation calls for a softer, more considerate approach. It is something I actively work through, and over time I have come to see that balance not as a contradiction but as one of my strengths.</p>
+                <p>My upbringing has also made me deeply aware of how culture shapes the way people communicate and receive feedback. I have seen firsthand how the same words can land very differently depending on where someone comes from. As I grow into my future profession, I carry that awareness with me, knowing that empathy and cultural sensitivity are just as important as competence and confidence.</p>
+              </div>
+              <div class="image-column">
+                ${generateImageGallery('easternWestern', index)}
+              </div>
+            </div>
+          `;
+
+        case 5:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">VI</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Philosophical and Psychological Self</h2>
+            <div class="content-body two-column">
+              <div class="text-column">
+                <p>I believe that life is not something to be controlled but something to be navigated with intention and grace. I have faced real hardship, loss, financial struggle, isolation, and periods where I deeply questioned my own worth and direction. I did not always move through these moments gracefully, but I always moved. And that, I have come to understand, is enough.</p>
+                <p>Philosophy has given me a framework for making sense of these experiences. I find truth in the idea that virtue and growth are not built in comfort but through the choices we make under pressure. Suffering is not something to suppress or rush past. It is something to feel, learn from, and eventually rise beyond.</p>
+                <p>I am honest with myself about where I am. My real self and my ideal self are not yet fully aligned. I carry resilience alongside self-doubt, and I am still learning to show up for myself with the same empathy I extend to others. But I believe that the gap between who I am and who I want to be closes through small, honest choices made every day.</p>
+                <p>To nurture the soul is to keep moving, keep reflecting, and keep choosing growth even when it is uncomfortable. That is the practice I am committed to.</p>
+              </div>
+              <div class="image-column">
+                ${generateImageGallery('philosophical', index)}
+              </div>
+            </div>
+          `;
+
+        case 6:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">VII</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Anthropological and Sociological Self</h2>
+            <div class="content-body two-column">
+              <div class="text-column">
+                <p>I am someone whose identity has been shaped by the many roles I play and the communities I belong to as a student, a freelance model, a friend, and a daughter. Each of these spaces has contributed to who I am and how I carry myself in the world.</p>
+                <p>I am driven, socially active, and known for bringing energy and confidence to the people around me. To most, I may come across as self-sufficient and a little difficult to read — and honestly, that is not entirely wrong. I have different sides of myself that I share depending on who I am with and what the situation calls for. I adapt, I lead, and I connect but I also guard my inner world carefully, allowing only a few people to truly know me.</p>
+                <p>At my core, I am someone who is constantly performing and constantly growing. I am building myself through every environment I enter, while quietly holding space for the version of me that exists beyond what others see.</p>
+              </div>
+              <div class="image-column">
+                ${generateImageGallery('anthropological', index)}
+              </div>
+            </div>
+          `;
+
+        case 7:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">VIII</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Physical and Sexual Self</h2>
+            <div class="content-body two-column">
+              <div class="text-column">
+                <p>I am someone who values and takes care of my physical self, not just for appearance but for the strength and discipline it takes to keep up with everything I do. I am comfortable and confident in my body, and I take that responsibility seriously through consistent healthy habits.</p>
+                <p>I am secure in my identity and orientation, and while my own experience has been straightforward, I deeply respect that others navigate this differently. What matters most to me is that every person is met with understanding and respect regardless of where they fall on that spectrum.</p>
+                <p>I believe strongly in human dignity. Body shaming, gender-based violence, and discrimination are issues I take seriously because they cause real harm to real people and to society as a whole. I try to live out my opposition to these not just in words but in how I treat people, how I speak, and the spaces I choose to show up in.</p>
+              </div>
+              <div class="image-column">
+                ${generateImageGallery('physical', index)}
+              </div>
+            </div>
+          `;
+
+        case 8:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">IX</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Material and Digital Self</h2>
+            <div class="content-body two-column">
+              <div class="text-column">
+                <p>My identity is made up of the things I carry, the people I keep close, and the versions of myself I choose to show depending on where I am. In my material world, I am defined by resilience, femininity, and the relationships that reflect the best of who I am. The people closest to me, my friends and my boyfriend, are as much a part of my identity as anything I own.</p>
+                <p>Online, however, I show far less of myself. My digital presence is intentionally professional, centered on my modelling work, and rarely gives people a real glimpse of my personality. While this curation serves a purpose, I am aware that it also flattens who I truly am.</p>
+                <p>I am not immune to the pressures that come with existing in a competitive, image-driven space. Comparison is something I actively have to manage. But I hold on to the reminder that my worth is not defined by any single role or career. My identity is far bigger than what any profile can contain, and I am slowly learning that sharing more of myself honestly is not a vulnerability. It is a strength.</p>
+              </div>
+              <div class="image-column">
+                ${generateImageGallery('material', index)}
+              </div>
+            </div>
+          `;
+
+        case 9:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">X</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Spiritual and Political Self</h2>
+            <div class="content-body two-column">
+              <div class="text-column">
+                <p>I am someone who thinks deeply about the world around me and holds strong convictions about what good leadership and genuine service look like. I believe in questioning, learning, and forming my own opinions rather than simply accepting what I am told. My values have always centered on fairness, honesty, and the idea that society should work for everyone, not just a few.</p>
+                <p>On a more personal level, I find meaning in my relationships, my family, and my commitment to becoming a better version of myself each day. I believe in something greater than myself, though I express that belief quietly — less through ritual and more through how I choose to live and treat the people around me.</p>
+                <p>I am someone driven by purpose, guided by values, and always looking to grow.</p>
+              </div>
+              <div class="image-column">
+                ${generateImageGallery('spiritual', index)}
+              </div>
+            </div>
+          `;
+
+        case 10:
+          return `
+            <div class="content-header">
+              <span class="roman-numeral">XI</span>
+              <div class="accent-line" style="background: ${accentColor}"></div>
+            </div>
+            <h2 class="content-title">Parting Words</h2>
+            <div class="content-body">
+              <p>At first, UTS was just another minor subject I had to accomplish. Honestly, I thought of it as another obstacle into my focus on computer science. Why do I need to learn about myself if I already know myself? I mean, I am the one living in this body. But whenever a requirement was assigned to ascertain the description of myself based on this or that, I struggled to answer. I had to really think critically, subjectively, and objectively about myself.</p>
+              <p>And that struggle taught me something. Knowing yourself and understanding yourself are two very different things. I have always been self-aware to a degree, but this subject pushed me to examine the layers underneath. The political, spiritual, physical, material, digital, cultural, philosophical, and psychological dimensions of who I am did not just exist separately. They were all connected, all informing each other in ways I had never stopped to consciously recognize. And somewhere in that process, I stopped seeing this subject as an obstacle. Computer science is a field built on problem solving, collaboration, and communication across cultures and perspectives. Understanding myself, how I think, how I adapt, where my blind spots are, and how I relate to others, makes me a more capable and more human professional. Self-awareness is not separate from competence. It is part of it.</p>
+              <p>I learned that my identity is not a fixed thing. It is assembled through my relationships, my experiences, the cultures I was raised between, and the choices I make every single day. I am a product of a Western father and an Eastern mother, of academic spaces and the modelling industry, of hardship and growth and everything in between. I have many facets, and depending on the angle you look from, you will see something different. But every side belongs to the same me.</p>
+              <p>I also realized that the version of myself I show the world is only a fraction of who I truly am. My digital self is curated, my social self is adaptive, and my inner world is something I guard carefully. This subject made me confront that gap honestly, not with shame, but with the intention to slowly close it.</p>
+              <p>What I will carry with me after this semester is the understanding that education to understand the self must be a continued practice. I am resilient yet prone to self-doubt. I am driven yet still learning to extend to myself the same compassion I give others. My real self and my ideal self are not yet fully aligned, and that is okay. Growth is rarely comfortable, but it is necessary.</p>
+              <blockquote>To my future self, I promise to keep moving even when it is not graceful. To feel the hard things without letting them become permanent. To keep shining, not just for myself but because of the people whose light I carry within me. No star shines alone, and I have never truly been one. I promise to remember that the trail I leave behind is not just a record of where I have been, but proof that I kept going. You will thank me not for having had it all figured out, but for never having stopped trying.</blockquote>
+            </div>
+          `;
+
+        default:
+          return '';
+      }
+    }
+
+    function generateImageGallery(key, slideIndex) {
+      const images = SLIDE_IMAGES[key];
+      if (!images || images.length === 0) return '';
+
+      galleryIndices[key] = 0;
+      const isDark = slideIndex >= 7 || (slideIndex / (SLIDES.length - 1)) <= 0.6;
+
+      if (images.length === 1) {
+        return `
+          <div class="image-gallery" data-gallery="${key}">
+            <div class="gallery-image-container" onclick="openLightbox('${key}', 0)">
+              <img class="gallery-image" src="${images[0].src}" alt="${images[0].alt}" loading="lazy">
+              <div class="zoom-overlay">
+                <svg class="zoom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="image-gallery" data-gallery="${key}">
+          <div class="gallery-nav">
+            <div class="gallery-image-container" onclick="openLightbox('${key}', galleryIndices['${key}'])">
+              <img class="gallery-image multi" id="gallery-img-${key}" src="${images[0].src}" alt="${images[0].alt}" loading="lazy">
+              <div class="zoom-overlay">
+                <svg class="zoom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                </svg>
+              </div>
+            </div>
+            <button class="gallery-arrow left" onclick="event.stopPropagation(); navigateGallery('${key}', -1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="gallery-arrow right" onclick="event.stopPropagation(); navigateGallery('${key}', 1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <div class="gallery-dots" id="gallery-dots-${key}">
+            ${images.map((_, i) => `<button class="gallery-dot ${i === 0 ? 'active' : ''}" onclick="setGalleryIndex('${key}', ${i})"></button>`).join('')}
+          </div>
+          <div class="gallery-counter" id="gallery-counter-${key}">1 of ${images.length}</div>
+        </div>
+      `;
+    }
+
+    function navigateGallery(key, direction) {
+      const images = SLIDE_IMAGES[key];
+      galleryIndices[key] = (galleryIndices[key] + direction + images.length) % images.length;
+      updateGalleryDisplay(key);
+    }
+
+    function setGalleryIndex(key, index) {
+      galleryIndices[key] = index;
+      updateGalleryDisplay(key);
+    }
+
+    function updateGalleryDisplay(key) {
+      const images = SLIDE_IMAGES[key];
+      const index = galleryIndices[key];
+
+      const img = document.getElementById(`gallery-img-${key}`);
+      if (img) {
+        img.src = images[index].src;
+        img.alt = images[index].alt;
+      }
+
+      const dots = document.querySelectorAll(`#gallery-dots-${key} .gallery-dot`);
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+
+      const counter = document.getElementById(`gallery-counter-${key}`);
+      if (counter) counter.textContent = `${index + 1} of ${images.length}`;
+    }
+
+    // Constellation map
+    function generateConstellationMap() {
+      const svg = document.getElementById('mapSvg');
+
+      // Draw lines
+      for (let i = 0; i < constellationPoints.length - 1; i++) {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', constellationPoints[i].x);
+        line.setAttribute('y1', constellationPoints[i].y);
+        line.setAttribute('x2', constellationPoints[i + 1].x);
+        line.setAttribute('y2', constellationPoints[i + 1].y);
+        line.setAttribute('class', 'map-line');
+        line.setAttribute('id', `map-line-${i}`);
+        line.setAttribute('stroke', 'rgba(255,255,255,0.15)');
+        line.setAttribute('stroke-width', '0.5');
+        svg.appendChild(line);
+      }
+
+      // Draw stars
+      constellationPoints.forEach((point, i) => {
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+        // Glow circle for current
+        const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        glow.setAttribute('cx', point.x);
+        glow.setAttribute('cy', point.y);
+        glow.setAttribute('r', '6');
+        glow.setAttribute('fill', 'none');
+        glow.setAttribute('class', 'map-glow');
+        glow.setAttribute('id', `map-glow-${i}`);
+        glow.setAttribute('stroke', 'transparent');
+        glow.setAttribute('stroke-width', '1');
+        glow.style.display = 'none';
+        g.appendChild(glow);
+
+        // Star point
+        const star = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        star.setAttribute('cx', point.x);
+        star.setAttribute('cy', point.y);
+        star.setAttribute('r', '2');
+        star.setAttribute('class', 'map-star');
+        star.setAttribute('id', `map-star-${i}`);
+        star.setAttribute('fill', 'rgba(255,255,255,0.3)');
+        star.onclick = () => goToSlide(i);
+        g.appendChild(star);
+
+        svg.appendChild(g);
+      });
+    }
+
+    function updateConstellationMap() {
+      const totalSlides = SLIDES.length;
+
+      // Update lines
+      for (let i = 0; i < constellationPoints.length - 1; i++) {
+        const line = document.getElementById(`map-line-${i}`);
+        const isTraversed = i < currentIndex;
+        line.setAttribute('stroke', isTraversed ? 'url(#lineGradient)' : 'rgba(255,255,255,0.15)');
+        line.setAttribute('stroke-width', isTraversed ? '1.5' : '0.5');
+        line.style.opacity = isTraversed ? '1' : '0.4';
+      }
+
+      // Update stars
+      constellationPoints.forEach((_, i) => {
+        const star = document.getElementById(`map-star-${i}`);
+        const glow = document.getElementById(`map-glow-${i}`);
+        const isCurrent = i === currentIndex;
+        const isVisited = i <= currentIndex;
+        const brightness = i / (totalSlides - 1);
+
+        const starColor = isVisited
+          ? `hsl(${200 + brightness * 40}, ${70 + brightness * 20}%, ${60 + brightness * 30}%)`
+          : 'rgba(255,255,255,0.3)';
+
+        star.setAttribute('fill', starColor);
+        star.setAttribute('r', isCurrent ? '4' : isVisited ? '3' : '2');
+        star.setAttribute('filter', isCurrent ? 'url(#glow)' : '');
+
+        glow.style.display = isCurrent ? 'block' : 'none';
+        glow.setAttribute('stroke', starColor);
+      });
+
+      // Update label
+      document.getElementById('mapLabel').textContent = SLIDES[currentIndex].name;
+    }
+
+    // Update slide
+    function updateSlide(index) {
+      const totalSlides = SLIDES.length;
+      const brightness = index / (totalSlides - 1);
+      const useDarkNav = index >= 7 || brightness <= 0.6;
+
+      // Update slides
+      document.querySelectorAll('.slide').forEach((slide, i) => {
+        slide.classList.remove('active', 'prev');
+        if (i === index) slide.classList.add('active');
+        else if (i === index - 1) slide.classList.add('prev');
+      });
+
+      // Update background
+      updateBackground(brightness);
+
+      // Update constellation map
+      updateConstellationMap();
+
+      // Update navigation theme
+      const navControls = document.getElementById('navControls');
+      const keyboardHint = document.getElementById('keyboardHint');
+      navControls.classList.toggle('dark-theme', useDarkNav);
+      navControls.classList.toggle('light-theme', !useDarkNav);
+      keyboardHint.classList.toggle('dark-theme', useDarkNav);
+      keyboardHint.classList.toggle('light-theme', !useDarkNav);
+
+      // Update nav buttons
+      document.getElementById('prevBtn').disabled = index === 0;
+      document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+      document.getElementById('navCounter').textContent = `${index + 1} / ${totalSlides}`;
+    }
+
+    function updateBackground(brightness) {
+      const bg = document.getElementById('starBackground');
+      const bgGradient = `
+        radial-gradient(ellipse at 50% 100%, 
+          hsl(${265 + brightness * 15}, ${70 - brightness * 20}%, ${18 + brightness * 40}%) 0%,
+          hsl(${270 - brightness * 10}, ${65 - brightness * 25}%, ${12 + brightness * 35}%) 40%,
+          hsl(${275 - brightness * 15}, ${60 - brightness * 30}%, ${8 + brightness * 25}%) 100%
+        )
+      `;
+      bg.style.background = bgGradient;
+
+      // Update star opacity
+      const starOpacity = Math.max(0.7, 1 - brightness * 0.3);
+      document.querySelectorAll('.star-layer').forEach(layer => {
+        layer.style.opacity = starOpacity;
+      });
+      document.getElementById('nebulaLayer').style.opacity = starOpacity * 0.8;
+
+      // Update light source
+      const lightSource = document.getElementById('lightSource');
+      lightSource.style.opacity = brightness > 0.4 ? (brightness - 0.4) * 1.2 : 0;
+      lightSource.style.transform = `scale(${0.8 + brightness * 0.3})`;
+      lightSource.querySelector('.light-source-inner').style.background = `
+        radial-gradient(circle, 
+          rgba(240, 171, 252, ${0.3 + brightness * 0.3}) 0%, 
+          rgba(196, 181, 253, ${0.2 + brightness * 0.2}) 40%,
+          transparent 70%
+        )
+      `;
+
+      // Update planet
+      updatePlanet();
+    }
+
+    function updatePlanet() {
+      const brightness = currentIndex / (SLIDES.length - 1);
+      const planet = document.getElementById('planet');
+      planet.style.background = `linear-gradient(135deg, 
+        hsl(${280 - brightness * 20}, 50%, 45%) 0%,
+        hsl(${275 - brightness * 15}, 45%, 30%) 50%,
+        hsl(${270 - brightness * 10}, 40%, 20%) 100%
+      )`;
+      planet.style.boxShadow = `
+        inset -6px -6px 15px rgba(0,0,0,0.4),
+        0 0 30px rgba(192, 132, 252, 0.25)
+      `;
+    }
+
+    // Navigation
+    function goToSlide(index) {
+      if (isTransitioning || index === currentIndex) return;
+      isTransitioning = true;
+      currentIndex = index;
+      updateSlide(index);
+      setTimeout(() => isTransitioning = false, 800);
+    }
+
+    function goToNext() {
+      if (currentIndex < SLIDES.length - 1) goToSlide(currentIndex + 1);
+    }
+
+    function goToPrevious() {
+      if (currentIndex > 0) goToSlide(currentIndex - 1);
+    }
+
+    // Lightbox
+    function openLightbox(key, index) {
+      lightboxImages = SLIDE_IMAGES[key];
+      lightboxIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    function updateLightbox() {
+      const img = document.getElementById('lightboxImage');
+      img.src = lightboxImages[lightboxIndex].src;
+      img.alt = lightboxImages[lightboxIndex].alt;
+
+      const counter = document.getElementById('lightboxCounter');
+      counter.textContent = lightboxImages.length > 1 ? `${lightboxIndex + 1} of ${lightboxImages.length}` : '';
+
+      document.getElementById('lightboxPrev').style.display = lightboxImages.length > 1 ? 'block' : 'none';
+      document.getElementById('lightboxNext').style.display = lightboxImages.length > 1 ? 'block' : 'none';
+    }
+
+    function lightboxPrev() {
+      lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+      updateLightbox();
+    }
+
+    function lightboxNext() {
+      lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+      updateLightbox();
+    }
+
+    // Shooting stars
+    function startShootingStars() {
+      setInterval(() => {
+        if (Math.random() > 0.7) {
+          const star = document.createElement('div');
+          star.className = 'shooting-star';
+          star.style.left = `${Math.random() * 60 + 20}%`;
+          star.style.top = `${Math.random() * 30}%`;
+          document.getElementById('starBackground').appendChild(star);
+          setTimeout(() => star.remove(), 1000);
+        }
+      }, 3000);
+    }
+
+    // Event listeners
+    function setupEventListeners() {
+      // Navigation buttons
+      document.getElementById('prevBtn').addEventListener('click', goToPrevious);
+      document.getElementById('nextBtn').addEventListener('click', goToNext);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (isTransitioning) return;
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+          e.preventDefault();
+          goToNext();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          goToPrevious();
+        } else if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      });
+
+      // Mouse parallax
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX / window.innerWidth;
+        mouseY = e.clientY / window.innerHeight;
+
+        document.querySelectorAll('.star-layer').forEach(layer => {
+          const parallax = parseFloat(layer.dataset.parallax) || 5;
+          const x = (mouseX - 0.5) * parallax * 2;
+          const y = (mouseY - 0.5) * parallax * 2;
+          layer.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        const nebulaLayer = document.getElementById('nebulaLayer');
+        const x = (mouseX - 0.5) * 10;
+        const y = (mouseY - 0.5) * 10;
+        nebulaLayer.style.transform = `translate(${x}px, ${y}px)`;
+      });
+
+      // Lightbox
+      document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+      document.getElementById('lightbox').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('lightbox')) closeLightbox();
+      });
+      document.getElementById('lightboxPrev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        lightboxPrev();
+      });
+      document.getElementById('lightboxNext').addEventListener('click', (e) => {
+        e.stopPropagation();
+        lightboxNext();
+      });
+    }
+  </script>
+</body>
+
+</html>
